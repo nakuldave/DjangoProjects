@@ -93,7 +93,27 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#        'LOCATION': [
+#            '192.168.0.4:11211',
+#        ]
+#    }
+#}
+
+SESSION_COOKIE_AGE = 1209600  ## default is 1209600 //two weeks
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+        'TIMEOUT' : SESSION_COOKIE_AGE + 120,
+    }
+}
+
 MIDDLEWARE_CLASSES = (
+#    'django.middleware.cache.UpdateCacheMiddleware',
+#    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
