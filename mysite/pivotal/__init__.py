@@ -13,11 +13,6 @@ class HttpSession(object):
     def __init__(self,request=None):
         self.cache = get_cache('default')
         if request :
-            import settings
-            if settings.SESSION_COOKIE_AGE :
-                self.TIME_OUT = settings.SESSION_COOKIE_AGE 
-            else :
-                self.TIME_OUT = 1209720  # +120
             self.sessionid = request.COOKIES['sessionid']
             self.cache.key_prefix = self.sessionid
         
